@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Bookmark" representedClassName="eyeBrowse.Bookmark" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="bookmark" inverseEntity="Page" syncable="YES"/>
+    </entity>
+    <entity name="Page" representedClassName="eyeBrowse.Page" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" defaultValueString=" " syncable="YES"/>
+        <attribute name="urlDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlFinal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlProtocol" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlUri" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bookmark" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bookmark" inverseName="page" inverseEntity="Bookmark" syncable="YES"/>
+        <relationship name="screenshot" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Screenshot" inverseName="page" inverseEntity="Screenshot" syncable="YES"/>
+        <relationship name="tab" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tab" inverseName="pages" inverseEntity="Tab" syncable="YES"/>
+        <relationship name="tabLastViewed" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tab" inverseName="pageLastViewed" inverseEntity="Tab" syncable="YES"/>
+    </entity>
+    <entity name="Screenshot" representedClassName="eyeBrowse.Screenshot" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="screenshot" inverseEntity="Page" syncable="YES"/>
+    </entity>
+    <entity name="Setting" representedClassName="eyeBrowse.Setting" syncable="YES">
+        <relationship name="currentTab" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tab" inverseName="setting" inverseEntity="Tab" syncable="YES"/>
+    </entity>
+    <entity name="Tab" representedClassName="eyeBrowse.Tab" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="pageLastViewed" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="tabLastViewed" inverseEntity="Page" syncable="YES"/>
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Page" inverseName="tab" inverseEntity="Page" syncable="YES"/>
+        <relationship name="setting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Setting" inverseName="currentTab" inverseEntity="Setting" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Bookmark" positionX="-63" positionY="9" width="128" height="90"/>
+        <element name="Page" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Screenshot" positionX="-36" positionY="45" width="128" height="73"/>
+        <element name="Setting" positionX="-27" positionY="63" width="128" height="58"/>
+        <element name="Tab" positionX="-54" positionY="18" width="128" height="103"/>
+    </elements>
+</model>
